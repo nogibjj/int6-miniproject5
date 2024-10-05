@@ -10,3 +10,4 @@ ruff==0.0.284
 
 # data processing
 pandas
+tabulate
