@@ -36,6 +36,7 @@ def test_crud_operations():
     assert result.returncode == 0, "CRUD operations failed"
     assert "CRUD on data..." in result.stdout
 
+
 def test_queries():
     """Tests the SQL queries"""
     result = subprocess.run(
@@ -53,6 +54,7 @@ def test_queries():
     assert result.returncode == 0, "SQL queries failed"
     assert result2.returncode == 0, "SQL queries failed"
     assert "Querying data..." in result.stdout
+
 
 if __name__ == "__main__":
     test_extract()
