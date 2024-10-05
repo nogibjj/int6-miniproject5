@@ -1,5 +1,5 @@
 ## int6_miniproject5
-
+[![CI](https://github.com/nogibjj/int6_miniproject5/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/int6_miniproject5/actions/workflows/cicd.yml)
 ### File Structure
 ```
 int6_miniproject5
