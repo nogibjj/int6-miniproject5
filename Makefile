@@ -26,7 +26,7 @@ transform_load:
 	python main.py transform_load
 
 query:
-	python main.py run_crud_operations
+	python main.py run_crud_operations, query_frequent_soda, query_heart_disease
 
 deploy:
 	#deploy goes here

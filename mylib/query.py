@@ -1,4 +1,5 @@
 import sqlite3
+from tabulate import tabulate
 
 def create_table():
     """Create the Nutrition table if it doesn't already exist"""
@@ -59,6 +60,7 @@ def read_data():
     for row in rows:
         print(row)
     conn.close()
+    print()
 
 
 def update_data():
@@ -103,3 +105,45 @@ def run_crud_operations():
 
     delete_data()
     read_data()
+
+def query_frequent_soda():
+    """Retrieve and print all individuals who frequently consume soda"""
+    conn = sqlite3.connect("Nutrition.db")
+    cursor = conn.cursor()
+    
+    cursor.execute('''
+        SELECT ID, SODAFREQ, EGGSFREQ, FRIESFREQ
+        FROM Nutrition
+        WHERE SODAFREQ > 3
+        LIMIT 5
+    ''')
+
+    rows = cursor.fetchall()
+    headers = ["ID", "SODAFREQ", "EGGSFREQ", "FRIESFREQ"]
+    print(tabulate(rows, headers, tablefmt="grid"))
+
+    conn.commit()
+    conn.close()
+    print("Frequent soda drinkers queried successfully.\n")
+
+
+
+def query_heart_disease():
+    """Retrieve and print individuals with heart disease and their food consumption"""
+    conn = sqlite3.connect("Nutrition.db")
+    cursor = conn.cursor()
+    
+    cursor.execute('''
+        SELECT ID, EGGSFREQ, GREENSALADFREQ, FRIESFREQ, SODAFREQ
+        FROM Nutrition
+        WHERE heart_disease = "Yes"
+        LIMIT 5
+    ''')
+    
+    rows = cursor.fetchall()
+    headers = ["ID", "EGGSFREQ", "GREENSALADFREQ", "FRIESFREQ", "SODAFREQ"]
+    print(tabulate(rows, headers, tablefmt="grid"))
+
+    conn.commit()
+    conn.close()
+    print("Heart disease queried successfully.\n")

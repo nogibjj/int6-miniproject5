@@ -34,10 +34,28 @@ def test_crud_operations():
         check=True,
     )
     assert result.returncode == 0, "CRUD operations failed"
-    assert "Querying data..." in result.stdout
+    assert "CRUD on data..." in result.stdout
 
+def test_queries():
+    """Tests the SQL queries"""
+    result = subprocess.run(
+        ["python", "main.py", "query_frequent_soda"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    result2 = subprocess.run(
+        ["python", "main.py", "query_heart_disease"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert result.returncode == 0, "SQL queries failed"
+    assert result2.returncode == 0, "SQL queries failed"
+    assert "Querying data..." in result.stdout
 
 if __name__ == "__main__":
     test_extract()
     test_transform_load()
     test_crud_operations()
+    test_queries()
