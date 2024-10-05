@@ -19,6 +19,15 @@ container-lint:
 
 refactor: format lint
 
+extract:
+	python main.py extract
+
+transform_load: 
+	python main.py transform_load
+
+query:
+	python main.py run_crud_operations
+
 deploy:
 	#deploy goes here
 		
